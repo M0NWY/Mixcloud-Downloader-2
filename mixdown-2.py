@@ -1,17 +1,16 @@
 # very slow single threaded version
 from __future__ import unicode_literals
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 import youtube_dl
 
 ydl_opts = {
     'format': 'bestaudio/best',
-    'ignoreerrors': 'yes',
+    'ignoreerrors': 'yes',  # because some shows are geo locked.
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
-        'preferredquality': '192',
+        'preferredquality': '192', # you may require higher quality, I do not !
     }]}
 
 options = Options()
@@ -22,10 +21,9 @@ profile.DEFAULT_PREFERENCES['frozen']["dom.webdriver.enabled"] = False # I'm not
 print("Staring browser")
 
 browser = webdriver.Firefox(firefox_profile=profile, options=options )
-#browser.get("https://www.patientaccess.com/login")
 print("Browser up, Getting links")
 
-for genre in ["beats", "deep-house", "drum-bass", "dubstep", "edm", "electronica", "house", "tech-house", "techno", "trance", "science"] :
+for genre in ["beats", "deep-house", "drum-bass", "dubstep", "edm", "electronica", "house", "tech-house", "techno", "trance", "science"] : # literal url paths
    url = "http://www.mixcloud.com/discover/"
    url += genre
    browser.get(url)
@@ -40,12 +38,10 @@ for genre in ["beats", "deep-house", "drum-bass", "dubstep", "edm", "electronica
          select = href.count("select") # thise are just links to more lists
          discover = href.count("discover")
 
-         if slashes == 5 and select == 0 and discover == 0 :
-               # string cleaning
-#            print("URL:"),
+         if slashes == 5 and select == 0 and discover == 0 
             print(href)
             urllist.append(href)
    print(len(urllist))
    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-      ydl.download(urllist)
+      ydl.download(urllist) # I just need this to spin off processes in a non-blocking way
 browser.close()

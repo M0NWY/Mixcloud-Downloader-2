@@ -9,7 +9,7 @@ ydl_opts = {
     'ignoreerrors': 'yes',  # because some shows are geo locked.
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
+        'preferredcodec': 'mp3', # the van radio only does mp3's :(
         'preferredquality': '192', # you may require higher quality, I do not !
     }]}
 

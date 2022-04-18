@@ -15,7 +15,7 @@ ydl_opts = {
     }]}
 
 
-ytdls = 20 # number of instances of youtube-dl to run
+
 options = Options()
 options.headless = True
 profile = webdriver.FirefoxProfile()

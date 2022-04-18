@@ -7,4 +7,4 @@ This is my solution.
 Requires : selenium, gecko driver, firefox, youtube-dl, linux ( developed on debian 10 and python 3.7 ish ), will probably run elsewhere...
 
 This version is single threded and slow, it is possible to go faster but pyhton is a bit iffy in this regard.
-It's good enough for me and probably won't cheese to many people off !
+It's good enough for me and probably won't cheese too many people off !
